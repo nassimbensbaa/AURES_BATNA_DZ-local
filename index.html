@@ -3,45 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURES BATNA DZ |   سماعات بلوتوث   </title>
+    <title>AURES BATNA DZ | سماعات بلوتوث احترافية</title>
 
     <!-- Fonts & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * { font-family: 'Cairo', sans-serif; }
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        
+        /* خلفية مضيئة ومشرقة - تدرج ذهبي وبرتقالي فاخر */
+        body { 
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE0B5 50%, #FFD6A5 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* تأثير خلفية ديناميكي مضيء */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 193, 7, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 60%, rgba(255, 107, 53, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
-        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.95; } }
         @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-        .title-float { animation: float 3s ease-in-out infinite; background: linear-gradient(135deg, #f59e0b, #ef4444, #f59e0b); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .btn-glow { transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .btn-glow:before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.3); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
-        .btn-glow:hover:before { width: 300px; height: 300px; }
-        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        input { border: 2px solid #e5e7eb; transition: all 0.3s ease; background: white; }
-        input:focus { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); outline: none; transform: scale(1.01); }
-        .loading { width: 20px; height: 20px; border: 3px solid #f3f4f6; border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; }
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.4), 0 0 10px rgba(255, 193, 7, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 193, 7, 0.8), 0 0 40px rgba(255, 107, 53, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(255, 193, 7, 0.4), 0 0 10px rgba(255, 193, 7, 0.2); }
+        }
+        
+        @keyframes borderGlow {
+            0% { border-color: rgba(255, 193, 7, 0.3); box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.2); }
+            50% { border-color: rgba(255, 107, 53, 0.6); box-shadow: 0 0 20px 5px rgba(255, 193, 7, 0.3); }
+            100% { border-color: rgba(255, 193, 7, 0.3); box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.2); }
+        }
+        
+        /* اسم المتجر متحرك مضيء */
+        @keyframes premiumShine {
+            0% {
+                background-position: -200% 0;
+                letter-spacing: 0px;
+            }
+            50% {
+                background-position: 200% 0;
+                letter-spacing: 2px;
+            }
+            100% {
+                background-position: -200% 0;
+                letter-spacing: 0px;
+            }
+        }
+        
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 107, 53, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(255, 193, 7, 1), 0 0 60px rgba(255, 107, 53, 0.8), 0 0 80px rgba(255, 193, 7, 0.5);
+            }
+        }
+        
+        .moving-store-name {
+            display: inline-block;
+            font-weight: 900;
+            font-size: 2.2rem;
+            background: linear-gradient(120deg, #F59E0B, #EA580C, #FBBF24, #F59E0B, #DC2626);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: premiumShine 3.5s ease-in-out infinite, textGlow 2s ease-in-out infinite;
+            letter-spacing: 1px;
+            direction: ltr;
+        }
+        
+        .store-header {
+            text-align: center;
+            padding: 1rem 1rem 0.8rem 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid transparent;
+            animation: borderGlow 2.5s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1), 0 0 20px rgba(255,193,7,0.3);
+        }
+        
+        .title-premium {
+            background: linear-gradient(135deg, #F59E0B, #EA580C, #DC2626);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #F59E0B, #EA580C, #DC2626);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .btn-premium:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-premium:hover:before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.6);
+        }
+        
+        input {
+            border: 2px solid #FDE68A;
+            transition: all 0.3s ease;
+            background: white;
+            color: #1F2937;
+        }
+        
+        input:focus {
+            border-color: #F59E0B;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2), 0 0 15px rgba(245, 158, 11, 0.3);
+            outline: none;
+            transform: scale(1.01);
+        }
+        
+        input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .loading {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #FEF3C7;
+            border-top: 3px solid #F59E0B;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+        
         @keyframes spin { to { transform: rotate(360deg); } }
-        .card-animate { animation: fadeInUp 0.6s ease-out; }
-        .discount-badge { position: absolute; top: -10px; right: -10px; background: linear-gradient(135deg, #ef4444, #dc2626); animation: pulse 1.5s ease-in-out infinite; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; animation: fadeInUp 0.3s ease; }
-        .modal-content { background: white; border-radius: 30px; max-width: 400px; width: 90%; animation: slideIn 0.3s ease; }
-        .timer { background: linear-gradient(135deg, #1f2937, #111827); border-radius: 15px; padding: 12px; margin-top: 15px; }
-        .timer-number { background: #374151; border-radius: 10px; padding: 10px; min-width: 60px; text-align: center; }
-        .feature-card { transition: all 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); }
-        input.error { border-color: #ef4444; animation: shake 0.5s ease; }
-        @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        
+        .card-premium {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #F59E0B, #DC2626);
+            animation: pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(220,38,38,0.4);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #FFFFFF, #FFF8F0);
+            border: 2px solid #F59E0B;
+            border-radius: 30px;
+            max-width: 400px;
+            width: 90%;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 30px rgba(245,158,11,0.5);
+        }
+        
+        .timer {
+            background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+            border-radius: 20px;
+            padding: 12px;
+            margin-top: 15px;
+            border: 2px solid #FDE68A;
+            box-shadow: 0 0 15px rgba(245,158,11,0.3);
+        }
+        
+        .timer-number {
+            background: linear-gradient(135deg, #F59E0B, #EA580C);
+            border-radius: 12px;
+            padding: 10px;
+            min-width: 60px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            background: white;
+            backdrop-filter: blur(4px);
+            border: 1px solid #FDE68A;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: #FFFBEB;
+            border-color: #F59E0B;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        
+        input.error {
+            border-color: #EF4444;
+            animation: shake 0.5s ease;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+        }
+        
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
         ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #f59e0b, #ef4444); border-radius: 10px; }
-        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.8; transform: scale(1.05);} }
-        .flash-badge { animation: blink 1s ease-in-out infinite; }
+        ::-webkit-scrollbar-track { background: #FFF5E6; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #F59E0B, #EA580C); border-radius: 10px; }
+        
+        .flash-badge {
+            animation: blink 1s ease-in-out infinite;
+            background: linear-gradient(135deg, #FEF3C7, #FFFBEB);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #FDE68A;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; transform: scale(1); background: #FEF3C7; }
+            50% { opacity: 0.9; transform: scale(1.02); background: #FDE68A; }
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #F59E0B, #DC2626);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .info-card {
+            background: white;
+            border: 1px solid #FDE68A;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-card:hover {
+            transform: scale(1.02);
+            border-color: #F59E0B;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.15);
+        }
+        
+        @keyframes softGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(245,158,11,0.3); }
+            50% { box-shadow: 0 0 25px rgba(245,158,11,0.6); }
+        }
+        
+        .glow-card {
+            animation: softGlow 3s ease-in-out infinite;
+        }
+        
+        @media (max-width: 640px) {
+            .moving-store-name {
+                font-size: 1.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -49,16 +327,18 @@
 <div id="root"></div>
 <div id="successModal" class="modal">
     <div class="modal-content p-6 text-center">
-        <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
-        <h3 class="text-2xl font-bold mb-2">تم استلام طلبك!</h3>
-        <p class="text-gray-600 mb-4">سنقوم بالتواصل معك خلال 24 ساعة</p>
-        <button onclick="closeModal()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">حسناً</button>
+        <div class="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg animate-pulse">
+            <i class="fas fa-check-circle text-white text-5xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-gray-800">تم استلام طلبك بنجاح!</h3>
+        <p class="text-gray-600 mb-4">سنقوم بالتواصل معك خلال 24 ساعة لتأكيد الطلب</p>
+        <button onclick="closeModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition font-bold">حسناً</button>
     </div>
 </div>
 
 <script>
 const PRODUCT = {
-    name: "🔥 سماعات بلوتوث",
+    name: "🔥 سماعات بلوتوث بريميوم",
     price: 1250,
     discount: 20,
     image: "images/nassim1.png.png",
@@ -83,12 +363,12 @@ function startCountdown() {
     const timerElement = document.getElementById("timer");
     if (!timerElement) return;
     const interval = setInterval(() => {
-        if (timeLeft <= 0) { clearInterval(interval); if(timerElement) timerElement.innerHTML = "انتهى العرض!"; return; }
+        if (timeLeft <= 0) { clearInterval(interval); if(timerElement) timerElement.innerHTML = "<div class='text-center text-orange-600 font-bold'>انتهى العرض!</div>"; return; }
         const hours = Math.floor(timeLeft / 3600);
         const minutes = Math.floor((timeLeft % 3600) / 60);
         const seconds = timeLeft % 60;
         if(timerElement) {
-            timerElement.innerHTML = `<div class="flex justify-center gap-3 text-center"><div class="timer-number"><div class="text-2xl font-bold text-white">${String(hours).padStart(2, '0')}</div><div class="text-xs text-gray-400">ساعات</div></div><div class="text-2xl font-bold text-white">:</div><div class="timer-number"><div class="text-2xl font-bold text-white">${String(minutes).padStart(2, '0')}</div><div class="text-xs text-gray-400">دقائق</div></div><div class="text-2xl font-bold text-white">:</div><div class="timer-number"><div class="text-2xl font-bold text-white">${String(seconds).padStart(2, '0')}</div><div class="text-xs text-gray-400">ثواني</div></div></div>`;
+            timerElement.innerHTML = `<div class="flex justify-center gap-3 text-center"><div class="timer-number"><div class="text-2xl font-bold text-white">${String(hours).padStart(2, '0')}</div><div class="text-xs text-amber-100">ساعات</div></div><div class="text-2xl font-bold text-amber-600">:</div><div class="timer-number"><div class="text-2xl font-bold text-white">${String(minutes).padStart(2, '0')}</div><div class="text-xs text-amber-100">دقائق</div></div><div class="text-2xl font-bold text-amber-600">:</div><div class="timer-number"><div class="text-2xl font-bold text-white">${String(seconds).padStart(2, '0')}</div><div class="text-xs text-amber-100">ثواني</div></div></div>`;
         }
         timeLeft--;
     }, 1000);
@@ -100,50 +380,114 @@ function render() {
     const messageClass = formData.messageType === "success" ? "text-green-600" : "text-red-600";
 
     document.getElementById("root").innerHTML = `
-        <div class="max-w-5xl mx-auto p-4 py-8">
+        <div class="max-w-6xl mx-auto p-4 py-8 relative z-10">
             <div class="card-animate">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-3 mb-6 text-center text-white flash-badge">
-                    <i class="fas fa-fire text-orange-500"></i>
-                    <span class="font-bold">${Math.floor(Math.random() * 50) + 20}</span> شخص يشاهد هذا المنتج الآن
-                    <i class="fas fa-eye mr-2"></i>
+                <!-- رأس احترافي مضيء: اسم المتجر بخط عريض ومتحرك -->
+                <div class="store-header glow-card">
+                    <span class="moving-store-name">
+                        🏪 AURES BATNA DZ 🏪
+                    </span>
                 </div>
+                
+                <div class="card-premium rounded-3xl p-4 mb-6 text-center flash-badge">
+                    <i class="fas fa-fire text-orange-500 mr-2"></i>
+                    <span class="font-bold text-gray-800">${Math.floor(Math.random() * 50) + 20}</span>
+                    <span class="text-gray-600"> شخص يشاهد هذا المنتج الآن</span>
+                    <i class="fas fa-eye mr-2 text-gray-500"></i>
+                </div>
+                
                 <div class="grid lg:grid-cols-2 gap-6">
                     <div class="relative">
-                        <div class="bg-white rounded-3xl shadow-2xl p-6 relative overflow-hidden group">
-                            <div class="discount-badge absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold z-10">-${PRODUCT.discount}% خصم</div>
-                            <img src="${PRODUCT.image}" class="w-full rounded-2xl transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Smart+Watch'" alt="ساعة ذكية">
+                        <div class="card-premium rounded-3xl p-6 relative overflow-hidden group">
+                            <div class="discount-badge absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold z-10 shadow-lg">-${PRODUCT.discount}% خصم</div>
+                            <img src="${PRODUCT.image}" class="w-full rounded-2xl transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Premium+Audio'" alt="سماعات بلوتوث">
                         </div>
                         <div class="grid grid-cols-2 gap-3 mt-4">
-                            ${PRODUCT.features.map(feature => `<div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center text-white feature-card transition"><i class="${feature.icon} text-2xl text-orange-500 mb-1"></i><p class="text-sm">${feature.text}</p></div>`).join('')}
+                            ${PRODUCT.features.map(feature => `<div class="feature-card rounded-xl p-3 text-center transition"><i class="${feature.icon} text-2xl text-amber-500 mb-1"></i><p class="text-sm text-gray-700">${feature.text}</p></div>`).join('')}
                         </div>
                     </div>
-                    <div class="bg-white rounded-3xl shadow-2xl p-6">
-                        <div class="text-center mb-4"><i class="fas fa-crown text-yellow-500 text-3xl mb-2"></i><h1 class="text-3xl font-bold title-float">${PRODUCT.name}</h1></div>
-                        <div class="text-center mb-4"><span class="text-4xl font-bold text-orange-600">${Math.round(finalPrice)} دج</span><span class="text-gray-400 line-through mr-2">${PRODUCT.price} دج</span><div class="text-sm text-green-600 mt-1"><i class="fas fa-gift"></i> وفرت ${Math.round(savedAmount)} دج</div></div>
+                    
+                    <div class="card-premium rounded-3xl p-6">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-crown text-amber-500 text-3xl mb-2"></i>
+                            <h1 class="text-3xl font-bold title-premium">${PRODUCT.name}</h1>
+                        </div>
+                        
+                        <div class="text-center mb-4">
+                            <span class="text-5xl font-bold price-tag">${Math.round(finalPrice)} دج</span>
+                            <span class="text-gray-400 line-through mr-3 text-lg">${PRODUCT.price} دج</span>
+                            <div class="text-sm text-green-600 mt-2"><i class="fas fa-gift ml-1"></i> وفرت ${Math.round(savedAmount)} دج</div>
+                        </div>
+                        
                         <div class="timer" id="timer"></div>
+                        
                         <div class="space-y-3 mt-4">
                             <input id="firstName" placeholder="الاسم *" value="${escapeHtml(formData.firstName)}" class="w-full p-3 rounded-xl">
                             <input id="lastName" placeholder="اللقب *" value="${escapeHtml(formData.lastName)}" class="w-full p-3 rounded-xl">
                             <input id="phone" placeholder="رقم الهاتف *" value="${escapeHtml(formData.phone)}" class="w-full p-3 rounded-xl" dir="ltr">
                             <input id="address" placeholder="العنوان الكامل (الولاية، البلدية، الشارع) *" value="${escapeHtml(formData.address)}" class="w-full p-3 rounded-xl">
                         </div>
-                        <div class="bg-gray-50 rounded-xl p-4 mt-4 space-y-2">
-                            <div class="flex justify-between"><span>سعر المنتج:</span><span class="font-bold">${Math.round(finalPrice)} دج</span></div>
-                            <div class="flex justify-between"><span>رسوم التوصيل:</span><span class="font-bold">${SHIPPING_PRICE} دج</span></div>
-                            <div class="border-t pt-2 flex justify-between text-lg font-bold"><span>المجموع:</span><span class="text-orange-600">${Math.round(total)} دج</span></div>
+                        
+                        <div class="info-card rounded-xl p-4 mt-4 space-y-2">
+                            <div class="flex justify-between text-gray-600"><span>سعر المنتج:</span><span class="font-bold text-gray-800">${Math.round(finalPrice)} دج</span></div>
+                            <div class="flex justify-between text-gray-600"><span>رسوم التوصيل:</span><span class="font-bold text-gray-800">${SHIPPING_PRICE} دج</span></div>
+                            <div class="border-t border-amber-200 pt-2 flex justify-between text-xl font-bold"><span class="text-gray-700">المجموع:</span><span class="text-amber-600">${Math.round(total)} دج</span></div>
                         </div>
-                        <button id="btn" class="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-500 text-white p-4 rounded-xl btn-glow font-bold text-lg relative overflow-hidden">${formData.loading ? '<span class="loading"></span> جاري الإرسال...' : '🛒 تأكيد الطلب الآن'}</button>
+                        
+                        <button id="btn" class="btn-premium w-full mt-4 text-white p-4 rounded-xl font-bold text-lg relative overflow-hidden">${formData.loading ? '<span class="loading"></span> جاري الإرسال...' : '🛒 تأكيد الطلب الآن'}</button>
+                        
                         <div class="grid grid-cols-2 gap-3 mt-6 text-center text-sm">
-                            <div class="bg-orange-50 p-3 rounded-xl transition hover:scale-105"><i class="fas fa-headset text-orange-600 text-2xl mb-1"></i><p class="font-bold text-gray-800">مصلحة الزبائن</p><p class="text-orange-600 font-bold text-md mt-1">0659418701</p><p class="text-xs text-gray-500">متاحة 24/7</p></div>
-                            <div class="bg-green-50 p-3 rounded-xl transition hover:scale-105"><i class="fas fa-rocket text-green-600 text-2xl mb-1"></i><p class="font-bold text-gray-800">التوصيل السريع</p><p class="text-xs text-gray-600">في جميع الولايات</p><p class="text-green-600 text-xs font-bold">2-5 أيام كحد أقصى</p></div>
+                            <div class="info-card p-3 rounded-xl transition hover:scale-105">
+                                <i class="fas fa-headset text-amber-500 text-2xl mb-1"></i>
+                                <p class="font-bold text-gray-700">مصلحة الزبائن</p>
+                                <p class="text-amber-600 font-bold text-md mt-1">0659418701</p>
+                                <p class="text-xs text-gray-500">متاحة 24/7</p>
+                            </div>
+                            <div class="info-card p-3 rounded-xl transition hover:scale-105">
+                                <i class="fas fa-rocket text-amber-500 text-2xl mb-1"></i>
+                                <p class="font-bold text-gray-700">التوصيل السريع</p>
+                                <p class="text-xs text-gray-500">في جميع الولايات</p>
+                                <p class="text-amber-600 text-xs font-bold">2-5 أيام كحد أقصى</p>
+                            </div>
                         </div>
-                        <div class="flex justify-around mt-4 pt-2 border-t border-dashed text-xs font-bold"><div class="flash-badge"><i class="fas fa-tags text-red-500 ml-1"></i> عروض حصرية أونلاين</div><div><i class="fas fa-undo-alt text-blue-500 ml-1"></i> استبدال مجاني</div><div><i class="fas fa-lock text-purple-500 ml-1"></i> دفع آمن عند الاستلام</div></div>
+                        
+                        <div class="flex justify-around mt-4 pt-2 border-t border-amber-200 text-xs font-bold">
+                            <div class="flash-badge"><i class="fas fa-tags text-amber-500 ml-1"></i> عروض حصرية</div>
+                            <div><i class="fas fa-undo-alt text-amber-500 ml-1"></i> استبدال مجاني</div>
+                            <div><i class="fas fa-lock text-amber-500 ml-1"></i> دفع آمن</div>
+                        </div>
+                        
                         <p class="text-center mt-3 ${messageClass} text-sm">${formData.message}</p>
                     </div>
                 </div>
-                <div class="mt-8 bg-gradient-to-l from-indigo-50 to-white rounded-3xl p-5 shadow-lg">
-                    <div class="text-center mb-3"><i class="fas fa-store text-indigo-600 text-2xl"></i><h3 class="font-bold text-lg text-gray-800 mr-2">مميزات التسوق من متجر VIP</h3></div>
-                    <div class="grid md:grid-cols-4 gap-4"><div class="text-center p-2"><i class="fas fa-shipping-fast text-blue-600 text-3xl mb-2 block"></i><p class="font-bold text-sm">توصيل فوري خلال 48 ساعة</p><p class="text-xs text-gray-500">للطلبات قبل 2 ظهراً</p></div><div class="text-center p-2"><i class="fas fa-wallet text-green-600 text-3xl mb-2 block"></i><p class="font-bold text-sm">الدفع عند الاستلام</p><p class="text-xs text-gray-500">اطلب وادفع بعد الاستلام</p></div><div class="text-center p-2"><i class="fas fa-medal text-yellow-600 text-3xl mb-2 block"></i><p class="font-bold text-sm">ضمان استعادة الحقوق</p><p class="text-xs text-gray-500">14 يوم لاسترجاع المنتج</p></div><div class="text-center p-2 relative flash-badge"><i class="fas fa-gem text-purple-600 text-3xl mb-2 block"></i><p class="font-bold text-sm">تخفيضات VIP</p><p class="text-xs text-gray-500">خصم إضافي على الطلبات الكبيرة</p></div></div>
+                
+                <div class="mt-8 card-premium rounded-3xl p-5">
+                    <div class="text-center mb-3">
+                        <i class="fas fa-gem text-amber-500 text-2xl"></i>
+                        <h3 class="font-bold text-xl text-gray-800 mr-2">مميزات التسوق من متجر VIP</h3>
+                    </div>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="text-center p-2 info-card rounded-xl">
+                            <i class="fas fa-shipping-fast text-amber-500 text-3xl mb-2 block"></i>
+                            <p class="font-bold text-sm text-gray-700">توصيل فوري خلال 48 ساعة</p>
+                            <p class="text-xs text-gray-500">للطلبات قبل 2 ظهراً</p>
+                        </div>
+                        <div class="text-center p-2 info-card rounded-xl">
+                            <i class="fas fa-wallet text-amber-500 text-3xl mb-2 block"></i>
+                            <p class="font-bold text-sm text-gray-700">الدفع عند الاستلام</p>
+                            <p class="text-xs text-gray-500">اطلب وادفع بعد الاستلام</p>
+                        </div>
+                        <div class="text-center p-2 info-card rounded-xl">
+                            <i class="fas fa-medal text-amber-500 text-3xl mb-2 block"></i>
+                            <p class="font-bold text-sm text-gray-700">ضمان استعادة الحقوق</p>
+                            <p class="text-xs text-gray-500">14 يوم لاسترجاع المنتج</p>
+                        </div>
+                        <div class="text-center p-2 info-card rounded-xl relative flash-badge">
+                            <i class="fas fa-gem text-amber-500 text-3xl mb-2 block"></i>
+                            <p class="font-bold text-sm text-gray-700">تخفيضات VIP</p>
+                            <p class="text-xs text-gray-500">خصم إضافي على الطلبات الكبيرة</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
