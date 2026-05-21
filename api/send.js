@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  // السماح بـ CORS للاختبار المحلي
+  // السماح بـ CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -25,13 +25,12 @@ export default async function handler(req, res) {
 
     const body = req.body || {};
 
-    // تعديل الحمولة لتتوافق مع البيانات الجديدة
     const payload = {
       firstName: body.firstName || "",
       lastName: body.lastName || "",
       phone: body.phone || "",
-      address: body.address || "",        // تم التغيير: state -> address
-      shipping: Number(body.shipping) || 50,  // قيمة افتراضية 50 دج
+      address: body.address || "",
+      shipping: Number(body.shipping) || 50,
       total: Number(body.total) || 0,
       productName: body.productName || ""
     };
@@ -73,8 +72,7 @@ export default async function handler(req, res) {
     console.error("❌ Server error:", err);
     return res.status(500).json({
       ok: false,
-      error: err.message,
-      stack: process.env.NODE_ENV === "development" ? err.stack : undefined
+      error: err.message
     });
   }
 }
