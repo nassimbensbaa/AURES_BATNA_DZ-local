@@ -249,62 +249,7 @@ const PRODUCT = {
 };
 
 const finalPrice = PRODUCT.price * (1 - PRODUCT.discount / 100);
-
-// ================= أسعار التوصيل حسب الولاية =================
-const shippingPrices = {
-    // الولايات الشمالية
-    "أدرار": { office: 500, home: 900 },
-    "الشلف": { office: 400, home: 700 },
-    "الأغواط": { office: 500, home: 900 },
-    "أم البواقي": { office: 500, home: 900 },
-    "باتنة": { office: 500, home: 900 },
-    "بجاية": { office: 450, home: 800 },
-    "بسكرة": { office: 500, home: 900 },
-    "بشار": { office: 600, home: 1000 },
-    "البليدة": { office: 400, home: 700 },
-    "البويرة": { office: 450, home: 800 },
-    "تمنراست": { office: 700, home: 1200 },
-    "تبسة": { office: 500, home: 900 },
-    "تلمسان": { office: 500, home: 900 },
-    "تيارت": { office: 500, home: 900 },
-    "تيزي وزو": { office: 450, home: 800 },
-    "الجزائر": { office: 350, home: 600 },
-    "الجلفة": { office: 500, home: 900 },
-    "جيجل": { office: 450, home: 800 },
-    "سطيف": { office: 450, home: 800 },
-    "سعيدة": { office: 500, home: 900 },
-    "سكيكدة": { office: 450, home: 800 },
-    "بلعباس": { office: 500, home: 900 },
-    "عنابة": { office: 450, home: 800 },
-    "قالمة": { office: 500, home: 900 },
-    "قسنطينة": { office: 450, home: 800 },
-    "المدية": { office: 450, home: 800 },
-    "مستغانم": { office: 450, home: 800 },
-    "المسيلة": { office: 500, home: 900 },
-    "معسكر": { office: 500, home: 900 },
-    "ورقلة": { office: 600, home: 1000 },
-    "وهران": { office: 450, home: 800 },
-    "البيض": { office: 500, home: 900 },
-    "إليزي": { office: 800, home: 1300 },
-    "برج بوعريريج": { office: 450, home: 800 },
-    "بومرداس": { office: 400, home: 700 },
-    "الطارف": { office: 500, home: 900 },
-    "تندوف": { office: 800, home: 1300 },
-    "تيسمسيلت": { office: 500, home: 900 },
-    "الوادي": { office: 600, home: 1000 },
-    "خنشلة": { office: 500, home: 900 },
-    "سوق أهراس": { office: 500, home: 900 },
-    "تيبازة": { office: 400, home: 700 },
-    "ميلة": { office: 500, home: 900 },
-    "عين الدفلى": { office: 450, home: 800 },
-    "النعامة": { office: 500, home: 900 },
-    "عين تيموشنت": { office: 500, home: 900 },
-    "غرداية": { office: 600, home: 1000 },
-    "غليزان": { office: 500, home: 900 }
-};
-
-// الحصول على قائمة الولايات مرتبة
-const allStates = Object.keys(shippingPrices).sort();
+const SHIPPING_PRICE = 50; // سعر التوصيل ثابت 50 دج
 
 let countdownTimer;
 
@@ -313,18 +258,11 @@ let formData = {
     firstName: "",
     lastName: "",
     phone: "",
-    state: "",
-    delivery: "office",
+    address: "",
     loading: false,
     message: "",
     messageType: ""
 };
-
-// ================= سعر التوصيل =================
-function shippingPrice(state, type){
-    if(!state || !shippingPrices[state]) return type === "home" ? 700 : 400;
-    return shippingPrices[state][type];
-}
 
 // ================= عداد التوقيت =================
 function startCountdown() {
@@ -369,16 +307,10 @@ function startCountdown() {
 
 // ================= عرض الصفحة =================
 function render(){
-    const shipping = shippingPrice(formData.state, formData.delivery);
-    const total = finalPrice + shipping;
+    const total = finalPrice + SHIPPING_PRICE;
     const savedAmount = PRODUCT.price - finalPrice;
 
     const messageClass = formData.messageType === "success" ? "text-green-600" : "text-red-600";
-
-    // إنشاء خيارات الولايات
-    const stateOptions = allStates.map(state => 
-        `<option value="${state}" ${formData.state === state ? "selected" : ""}>${state}</option>`
-    ).join('');
 
     document.getElementById("root").innerHTML = `
         <div class="max-w-5xl mx-auto p-4 py-8">
@@ -439,16 +371,7 @@ function render(){
                             <input id="firstName" placeholder="الاسم *" value="${escapeHtml(formData.firstName)}" class="w-full p-3 rounded-xl">
                             <input id="lastName" placeholder="اللقب *" value="${escapeHtml(formData.lastName)}" class="w-full p-3 rounded-xl">
                             <input id="phone" placeholder="رقم الهاتف *" value="${escapeHtml(formData.phone)}" class="w-full p-3 rounded-xl" dir="ltr">
-                            
-                            <select id="state" class="w-full p-3 rounded-xl">
-                                <option value="">اختر الولاية *</option>
-                                ${stateOptions}
-                            </select>
-                            
-                            <select id="delivery" class="w-full p-3 rounded-xl">
-                                <option value="office" ${formData.delivery === "office" ? "selected" : ""}>📦 توصيل للمكتب (${Math.round(shippingPrice(formData.state, "office"))} دج)</option>
-                                <option value="home" ${formData.delivery === "home" ? "selected" : ""}>🏠 توصيل للمنزل (${Math.round(shippingPrice(formData.state, "home"))} دج)</option>
-                            </select>
+                            <input id="address" placeholder="العنوان الكامل (الولاية، البلدية، الشارع) *" value="${escapeHtml(formData.address)}" class="w-full p-3 rounded-xl">
                         </div>
 
                         <!-- تفاصيل السعر -->
@@ -459,7 +382,7 @@ function render(){
                             </div>
                             <div class="flex justify-between">
                                 <span>رسوم التوصيل:</span>
-                                <span class="font-bold">${Math.round(shipping)} دج</span>
+                                <span class="font-bold">${SHIPPING_PRICE} دج</span>
                             </div>
                             <div class="border-t pt-2 flex justify-between text-lg font-bold">
                                 <span>المجموع:</span>
@@ -472,7 +395,7 @@ function render(){
                             ${formData.loading ? `<span class="loading"></span> جاري الإرسال...` : '🛒 تأكيد الطلب الآن'}
                         </button>
 
-                        <!-- ضمانات معدلة: تم استبدال تعليقات الفايسبوك بمعلومات مصلحة الزبون والتوصيل السريع -->
+                        <!-- ضمانات -->
                         <div class="grid grid-cols-2 gap-3 mt-6 text-center text-sm">
                             <div class="bg-orange-50 p-3 rounded-xl transition hover:scale-105">
                                 <i class="fas fa-headset text-orange-600 text-2xl mb-1"></i>
@@ -499,7 +422,7 @@ function render(){
                     </div>
                 </div>
                 
-                <!-- قسم الخدمات الإضافية وومضات المتجر - حذف تعليقات فيسبوك بالكامل واستبدالها بلمسات تسويقية-->
+                <!-- قسم الخدمات الإضافية وومضات المتجر -->
                 <div class="mt-8 bg-gradient-to-l from-indigo-50 to-white rounded-3xl p-5 shadow-lg">
                     <div class="text-center mb-3">
                         <i class="fas fa-store text-indigo-600 text-2xl"></i>
@@ -541,15 +464,13 @@ function bindEvents() {
     const firstNameInput = document.getElementById("firstName");
     const lastNameInput = document.getElementById("lastName");
     const phoneInput = document.getElementById("phone");
-    const stateSelect = document.getElementById("state");
-    const deliverySelect = document.getElementById("delivery");
+    const addressInput = document.getElementById("address");
     const btn = document.getElementById("btn");
 
     if(firstNameInput) firstNameInput.oninput = (e) => { formData.firstName = e.target.value; clearMessage(); removeError(e.target); };
     if(lastNameInput) lastNameInput.oninput = (e) => { formData.lastName = e.target.value; clearMessage(); removeError(e.target); };
     if(phoneInput) phoneInput.oninput = (e) => { formData.phone = e.target.value; clearMessage(); removeError(e.target); };
-    if(stateSelect) stateSelect.onchange = (e) => { formData.state = e.target.value; clearMessage(); removeError(e.target); render(); };
-    if(deliverySelect) deliverySelect.onchange = (e) => { formData.delivery = e.target.value; render(); };
+    if(addressInput) addressInput.oninput = (e) => { formData.address = e.target.value; clearMessage(); removeError(e.target); };
     if(btn) btn.onclick = submitOrder;
 }
 
@@ -612,11 +533,11 @@ async function submitOrder(){
         showError(document.getElementById("phone"));
         return;
     }
-    if(!formData.state){
-        formData.message = "❌ الرجاء اختيار الولاية";
+    if(!formData.address){
+        formData.message = "❌ الرجاء إدخال العنوان";
         formData.messageType = "error";
         render();
-        showError(document.getElementById("state"));
+        showError(document.getElementById("address"));
         return;
     }
 
@@ -633,8 +554,7 @@ async function submitOrder(){
     formData.message = "";
     render();
 
-    const shipping = shippingPrice(formData.state, formData.delivery);
-    const total = finalPrice + shipping;
+    const total = finalPrice + SHIPPING_PRICE;
 
     try {
         const res = await fetch("/api/send", {
@@ -644,9 +564,8 @@ async function submitOrder(){
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 phone: formData.phone,
-                state: formData.state,
-                deliveryType: formData.delivery,
-                shipping: shipping,
+                address: formData.address,
+                shipping: SHIPPING_PRICE,
                 total: total,
                 productName: PRODUCT.name
             })
@@ -665,7 +584,7 @@ async function submitOrder(){
             formData.firstName = "";
             formData.lastName = "";
             formData.phone = "";
-            formData.state = "";
+            formData.address = "";
             
             formData.loading = false;
             render();
