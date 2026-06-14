@@ -341,7 +341,12 @@ const PRODUCT = {
     name: "🔥سماعات بلوتوث  M 19 ",
     price: 1320,
     discount: 25,
-    image: "images/nassim1.png",
+    images: [
+        "images/nassim1.png",
+        "images/nassim2.png",
+        "images/nassim3.png",
+        "images/nassim4.png"
+    ],
     features: [
         { icon: "fas fa-heartbeat", text: "🔊 صوت نقي وعالي الجودة بتقنية Hi-Fi" },
         { icon: "fas fa-charging-station", text: "🔋 بطارية تدوم لساعات مع علبة شحن قوية" },
@@ -400,7 +405,16 @@ function render() {
                     <div class="relative">
                         <div class="card-premium rounded-3xl p-6 relative overflow-hidden group">
                             <div class="discount-badge absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold z-10 shadow-lg">-${PRODUCT.discount}% خصم</div>
-                            <img src="${PRODUCT.image}" class="w-full rounded-2xl transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Premium+Audio'" alt="سماعات بلوتوث">
+                            <div class="grid grid-cols-2 gap-3">
+    ${PRODUCT.images.map(img => `
+        <img
+            src="${img}"
+            class="w-full h-60 object-cover rounded-2xl transition-transform duration-500 hover:scale-105"
+            onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Premium+Audio'"
+            alt="سماعات بلوتوث"
+        >
+    `).join('')}
+</div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mt-4">
                             ${PRODUCT.features.map(feature => `<div class="feature-card rounded-xl p-3 text-center transition"><i class="${feature.icon} text-2xl text-amber-500 mb-1"></i><p class="text-sm text-gray-700">${feature.text}</p></div>`).join('')}
