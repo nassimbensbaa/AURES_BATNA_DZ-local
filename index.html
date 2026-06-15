@@ -409,7 +409,7 @@ function render() {
     ${PRODUCT.images.map(img => `
         <img
             src="${img}"
-            class="w-full h-60 object-cover rounded-2xl transition-transform duration-500 hover:scale-105"
+           class="w-full h-60 object-contain rounded-2xl bg-white" transition-transform duration-500 hover:scale-105"
             onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Premium+Audio'"
             alt="سماعات بلوتوث"
         >
